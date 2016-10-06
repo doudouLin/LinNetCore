@@ -18,10 +18,49 @@
             EnterDate: new Date(2016, 8, 2),
             consumption: 123.659855,
             plan: 'super-plasn',
-            message: 'what is up'
+            message: 'what is up',
+            email: 'hj@email.com'
         };
 
         $scope.data = someData;
+
+        $scope.person = {};
+
+        $scope.person.newsletterOptIn = false;
+
+        $scope.person.channels = [
+            { value: "television", label: "Television" },
+            { value: "radio", label: "Radio" },
+            { value: "social-media", label: "Social Media" },
+            { value: "other", label: "Other" }
+        ];
+
+        $scope.person.register = function () {
+            $scope.firstNameInvalid = false;
+            $scope.emailInvalid = false;
+            $scope.lastNameInvalid = false;
+            $scope.researchInvalid = false;
+
+            if (!$scope.registerForm.firstName.$valid) {
+                $scope.firstNameInvalid = true;
+            }
+
+            if (!$scope.registerForm.lastName.$valid) {
+                $scope.lastNameInvalid = true;
+            }
+
+            if (!$scope.registerForm.email.$valid) {
+                $scope.emailInvalid = true;
+            }
+
+            if (!$scope.registerForm.research.$valid) {
+                $scope.researchInvalid = true;
+            }
+
+            if ($scope.registerForm.$valid) {
+                $scope.doShow = true;
+            }
+        }
 
         $scope.colorsArray = ['red', 'green', 'blue', 'purple', 'olive'];
 
@@ -40,6 +79,16 @@
                 //showSomeFriendlyFeedback();
                 // Trasmit the error to the server
                 //log(1, "001: The user was unable to complete his purchase");
+            }
+        }
+
+        $scope.showName = function () {
+            if (angular.isDefined($scope.content))
+            {
+                alert("Name is " + $scope.content);
+            }
+            else {
+                alert("Name is empty");
             }
         }
 }

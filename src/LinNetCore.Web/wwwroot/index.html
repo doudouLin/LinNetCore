@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <title>DOTA 2 Heroes</title>
+    <link rel="stylesheet" type="text/css" href="Css/index.css"/>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.js"></script>
     <script src="app.js"></script>
+    
     <script>
         
     </script>
@@ -14,7 +16,51 @@
     <div ng-controller="heroesController">
         <h1>Testing Configuration</h1>
 
+        <p style="color:red">listing 1-9: Form</p>
+        <div>
+            <form name="registerForm" ng-submit="person.register()" novalidate>
+                <div ng-show="registerForm.$dirty">Form input has started</div>
+                <div ng-show="registerForm.$pristine">Form input has not yet started</div>
 
+                <input type="text" placeholder="First Name" name="firstName" ng-model="person.firstName" required/>
+                <span ng-show="firstNameInvalid">Please enter a first name</span>
+                <br />
+
+                <input type="text" placeholder="Last Name" name="lastName" ng-model="person.Name" required />
+                <span ng-show="lastNameInvalid">Please enter a last name</span>
+                <br />
+
+                <input type="email" placeholder="Email" name="email" ng-model="person.email" required />
+                <span ng-show="emailInvalid">Please enter a email</span>
+                <br />
+
+                <select name="research" ng-model="person.levels" ng-options="obj.label as obj.value for obj in person.channels" required>
+                    <option value="">where did you hear about us?</option>
+                </select>
+                <span ng-show="researchInvalid"><br />Please tell us where you heard about us</span>
+                <br />
+
+                <input ng-model="person.newsletterOptIn" type="checkbox" name="newsletterOptIn" id="newsletterOptIn" value="newsletterOptIn" />
+                <label for="newsletterOptIn">Recieve monthly newsletter</label>
+                <br />
+
+                <input type="submit" value="Register" ng-click="person.register()">
+            </form>
+
+            <div ng-show="doShow">
+                Thank you for taking the time to register!
+            </div>
+        </div>
+
+
+
+        <p style="color:red">listing 1-8: Binding</p>
+        <input ng-model="content" type="text" id="binding"/>
+        <label for="binding">Click me</label>
+        <br />
+        <input type="button" value="show first name" ng-click="showName()"/>
+        <p>{{content}}</p>
+        <br />
 
         <p style="color:red">listing 1-7: function & Error Handling</p>
         <button ng-click="clickMe()" type="button">Click me</button>

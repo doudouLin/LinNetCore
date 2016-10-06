@@ -1,6 +1,7 @@
 ﻿module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.initConfig({
         uglify: {
@@ -9,13 +10,27 @@
             }
         },
 
+        copy: {
+            main: {
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        'Scripts/Css/*.css'
+                    ],
+                    dest: 'wwwroot/Css/',
+                    filter: 'isFile'
+                }]
+            }
+        },
+
         watch: {
             scripts: {
                 files: ['Scripts/**/*.js'],
-                tasks: ['uglify']
+                tasks: ['uglify', 'copy']
             }
         }
     });
 
-    grunt.registerTask('default', ['uglify', 'watch']);
+    grunt.registerTask('default', ['uglify', 'copy', 'watch']);
 };
